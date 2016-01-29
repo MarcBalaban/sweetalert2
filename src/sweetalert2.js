@@ -16,6 +16,7 @@
     animation: true,
     allowOutsideClick: true,
     allowEscapeKey: true,
+    allowEnterKey: true,
     showConfirmButton: true,
     showCancelButton: false,
     closeOnConfirm: true,
@@ -260,6 +261,7 @@
         params.customClass        = arguments[0].customClass || params.customClass;
         params.allowOutsideClick  = arguments[0].allowOutsideClick !== undefined ? arguments[0].allowOutsideClick : defaultParams.allowOutsideClick;
         params.allowEscapeKey     = arguments[0].allowEscapeKey !== undefined ? arguments[0].allowEscapeKey : defaultParams.allowEscapeKey;
+        params.allowEnterKey     = arguments[0].allowEnterKey !== undefined ? arguments[0].allowEnterKey : defaultParams.allowEnterKey;
         params.showConfirmButton  = arguments[0].showConfirmButton !== undefined ? arguments[0].showConfirmButton : defaultParams.showConfirmButton;
         params.showCancelButton   = arguments[0].showCancelButton !== undefined ? arguments[0].showCancelButton : defaultParams.showCancelButton;
         params.closeOnConfirm     = arguments[0].closeOnConfirm !== undefined ? arguments[0].closeOnConfirm : defaultParams.closeOnConfirm;
@@ -452,7 +454,7 @@
         setFocus($targetElement);
 
       } else {
-        if (keyCode === 13 || keyCode === 32) {
+        if ((keyCode === 13 && params.allowEnterKey === true) || keyCode === 32) {
           if (btnIndex === -1) {
             // ENTER/SPACE clicked outside of a button.
             fireClick($confirmButton, e);
